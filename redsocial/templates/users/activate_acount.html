@@ -1,0 +1,22 @@
+{% extends "users/base_user.html" %}
+
+{% load static %}
+
+{% block title %}Activar Cuenta{% endblock title %}
+
+{% block content %}
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-4" style="margin-top: 8em;">
+            <form method="POST">{% csrf_token %}
+                <h2 style="text-align:center;">Activar Usuarios</h2>
+                <p><b>Codigo Activacion:</b>{{form.codigo}}</p>
+                {% for error in form.errors.codigo %}
+                    <p style="color:red;">{{error}}</p>
+                {% endfor %}
+                <button type="submit" class="cell button primary">Activar</button>
+            </form>
+        </div>   
+    </div>
+</div>
+{% endblock content %}

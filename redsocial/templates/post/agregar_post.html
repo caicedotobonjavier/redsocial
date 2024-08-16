@@ -1,0 +1,46 @@
+{% extends 'post/base_post.html' %}
+
+{% load static %}
+
+{% block title %}Agregar Post{% endblock title%}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<b>{{user.full_name}}</b>
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-7" style="margin-top: 2em;">
+            
+            <h2 class="cell" style="text-align:center;">Agregar Nuevo Post</h2>
+            
+            
+            <div class="card-section">
+                <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    
+                    <div class="cell large-12">
+                    <p><b>Imagen: </b>{{form.image}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Titulo Post: </b>{{form.title}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Comentario: </b>{{form.content}}</p>
+                    </div>
+
+                    
+                    <div class="cell large-12" style="text-align:center;">
+                        <button class="submit success button">Publicar</button>
+                        <a href="{% url 'users_app:perfil' %}" type="button" class="alert button">Cancelar</a>
+                    </div>
+
+                </form>   
+            </div>
+        </div>        
+    </div>
+</div>
+
+{% endblock content %}

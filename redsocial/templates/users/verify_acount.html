@@ -1,0 +1,22 @@
+{% extends 'users/base_user.html' %}
+
+{% load static %}
+
+{% block title %}Autenticar{% endblock title %}
+
+{% block content %}
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-5" style="margin-top: 8em;">
+            <form method="POST">{% csrf_token %}
+                <h2 style="text-align:center;">Verificar Usuarios</h2>
+                <p><b>Codigo Verificacion: </b>{{form.codigo}}</p>
+                {% for error in form.errors.codigo %}
+                    <p style="color:red;">{{error}}</p>
+                {% endfor %}
+                <button type="submit" class="cell button primary">Acceder</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

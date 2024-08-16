@@ -1,0 +1,56 @@
+<!-- head para PC -->
+{% extends "users/base_user.html" %}
+
+{% load  static %}
+
+{% block title %}Perfil {{user.full_name}}{% endblock title %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center" style="margin-top: 1em;">
+        <!-- bloque de datos de usuario -->
+        <div class="cell small-12 large-4">
+            <div class="callout">
+                <img class="card-favoritos-img" src="{{ user.avatar.url }}">
+                <h5><b>{{user.full_name}}</b></h5>
+                <p><b>Email: </b>{{user.email}}</p>
+                <p><b>Direccion: </b>{{user.address}}</p>
+                <p><b>Telefono: </b>{{user.phone}}</p>
+                <p><b>Cumpleaños: </b>{{user.date_birth|date}}</p>
+                <p><a class="button success" href="#">Editar Informacion Perfil</a></p>   
+                <p><a class="button primary" href="{% url 'post_app:new_post' %}">Publicar Post</a> </p>    
+            </div>
+        </div>
+        <!-- FIN bloque de datos de usuario -->
+
+
+        <!-- bloque de articulos favoritos de usuario -->
+        <div class="cell large-8 grid-x grid-margin-x align-center">
+            {% for post in posts %}
+            <div class="cell small-12">
+                <div class="card-favoritos">
+                    <img class="card-favoritos-img" src="{{ post.image.url }}">
+                    <div class="card-favoritos-body">
+                        <h3 class="card-favoritos-body-titulo">{{ post.title }}</h3>
+                        <p class="card-favoritos-body-text">{{ post.content }}</p>
+                        <div class="card-favoritos-body-actions">
+                            <a class="button warning" href="#">Ver</a>
+                            <a class="button alert" href="#">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+            No ha publicado ningun post
+            {% endfor %}
+            </div>
+        </div>
+    </div>    
+        <!-- FIN bloque de articulos favoritos de usuario -->
+    </div>
+</div>
+{% include "includes/footer.html" %}
+
+{% endblock content %}

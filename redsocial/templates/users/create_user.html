@@ -1,0 +1,68 @@
+{% extends 'users/base_user.html' %}
+
+{% load static %}
+
+{% block title%} Registrar Usuario {% endblock title%}
+
+{% block content %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-10 large-7" style="margin-top: 2em;">
+            
+            <h2 class="cell" style="text-align:center;">Registrar Usuario</h2>
+            
+            
+            <div class="card-section">
+                <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    
+                    <div class="cell large-12">
+                    <p><b>Correo Electronico: </b>{{form.email}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Nombre completo: </b>{{form.full_name}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Telefono contacto: </b>{{form.phone}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Direccion domicilio: </b>{{form.address}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Foto perfil: </b>{{form.avatar}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Fecha nacimiento: </b>{{form.date_birth}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Contraseña: </b>{{form.password1}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    <p><b>Confirmar contraseña: </b>{{form.password2}}</p>
+                    </div>
+
+                    <div class="cell large-12">
+                    {% for error in form.errors.password2 %}
+                        <p style="color:red;">{{error}}  </p>  
+                    {% endfor %}
+                    </div>
+                    
+                    <div class="cell large-12">
+                    <button type="submit" class="cell button primary">Guardar</button>
+                    </div>
+
+                </form>   
+            </div>
+        </div>        
+    </div>
+</div>
+
+{% endblock content %}
+

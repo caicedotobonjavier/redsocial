@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load  static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/myblog.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.leer-mas').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var moreContent = this.previousElementSibling;
+                moreContent.style.display = moreContent.style.display === 'none' ? 'inline' : 'none';
+                this.textContent = this.textContent === 'Leer más' ? 'Leer menos' : 'Leer más';
+            });
+        });
+    });
+</script>
+{% endblock js %}

@@ -1,0 +1,24 @@
+{% extends 'users/base_user.html' %}
+
+{% load static %}
+
+{% block title %}Login Usuarios {% endblock title %}
+
+{% block content %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center" style="margin-top: 8em;">
+        <form method="POST">{% csrf_token %}
+            <h2>Acceder al Sistema</h2>
+            <p><b>Email : </b>{{form.email}}</p>
+            <p><b>Contraseña : </b>{{form.password}}</p>
+            {% if form.errors %}
+                <p style="color:red;">Usuario o contraseña erroneo </p>
+            {% endif %}
+            <button type="submit" class="cell button primary">Acceder</button>
+            <a type="submit" class="cell button secondary" href="{% url 'users_app:create_user' %}">Registrar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

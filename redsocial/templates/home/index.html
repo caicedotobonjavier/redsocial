@@ -1,0 +1,37 @@
+{% extends 'home/base_home.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+<b>{{user.full_name}}</b>
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center" style="margin-top: 1em;">
+        {% for post in posts %}
+        <div class="cell small-10 large-8">
+            <div class="card" style="width: 100%;">
+                <img src="{{ post.image.url }}" style="height:500px;">
+                <div class="card-section">
+                    <p><b>{{post.user.full_name}}</b></p>
+                    {% if post.content|length >= 50 %}
+                    <p>{{post.content|slice:":50"}}
+                        <span class="more-content">{{post.content|slice:"50:"}}</span>
+                        <a href="javascript:void(0);" class="leer-mas">Leer menos</a></p>
+                    {% else %}
+                        <p>{{post.content}}</p>
+                    {% endif %}
+                    <h4 style="color:blue;">{{post.title}}</h4>
+                    <p><b>Publicado: </b>{{post.created|date}}</p>                
+                </div>
+            </div>
+        </div>
+        {% endfor %}             
+    </div>
+</div>
+
+{% endblock content %}

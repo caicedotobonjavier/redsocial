@@ -1,0 +1,31 @@
+<header>
+    <div class="grid-x grid-margin-x header">
+        <div class="cell small-12 medium-4 large-3">
+            <a href="#" style="font-size: 30px; color: #0277bd;">
+                Red Social Cisneros
+            </a>
+        </div>
+        <div class="cell small-12 medium-4">
+            
+        </div>
+        <div class="cell small-12 large-5">
+            <ul class="menu" style="justify-content: flex-end;">
+                <li>
+                    <a href="{% url 'users_app:perfil' %}">Perfil</a>
+                </li>
+                <li>
+                    <a href="{% url 'home_app:home' %}">Publicaciones</a>
+                </li>
+                <li>
+                    
+                    {% if user.is_anonymous %}
+                        <a href="{% url 'users_app:login_user' %}" class="warning button">Acceder</a>
+                    {% else %}
+                        <a href="{% url 'users_app:logout' %}" class="success button">Salir</a>
+                    {% endif %}
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</header>
